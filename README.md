@@ -1,4 +1,4 @@
-![logo](./resources/images/banner.png)
+![logo](./resources/images/banner.jpg)
 
 ## Contents
 
