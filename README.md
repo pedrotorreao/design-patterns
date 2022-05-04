@@ -12,7 +12,37 @@ This repository is _**open for contributions**_.
 
 ## Object Oriented Programming (OOP) - Basics
 
-Programming paradigm which focuses on the organization of the software based on the grouping of related data and behavior into structures called _`objects`_.
+Programming paradigm which focuses on the organization of the software into reusable pieces of code called _`classes`_, based on the grouping of related data and behaviors. Theses classes can be thought of as general blueprints or recipes that define the structure for _`objects`_. Objects are concrete instances of classes.
+
+In the UML diagram below, we have a very basic `Person` class which contains a few private attributes and public methods:
+
+![OOP_class_example_1](resources/uml/oop_class_1.png)
+
+Below is a C++ implementation of this class:
+
+```cpp
+class Person {
+  private:
+    string name;
+    string country;
+    string occupation;
+    int age;
+  public:
+    Person(string name, string country, string occupation, int age)
+      : name{name}, country{country}, occupation{occupation}, age{age} {}
+
+    string getName(){
+      return this->name;
+    }
+    string getNationality(){
+      return this->country;
+    }
+    void changeJob(const string &newJob){
+      this->occupation = newJob;
+    }
+    ...
+}
+```
 
 ### Abstraction
 
