@@ -12,7 +12,12 @@ This repository is _**open for contributions**_.
 
 ## Object Oriented Programming (OOP) - Basics
 
-Programming paradigm which focuses on the organization of the software into reusable pieces of code called _`classes`_, based on the grouping of related data and behaviors. Theses classes can be thought of as general blueprints or recipes that define the structure for _`objects`_. Objects are concrete instances of classes.
+Programming paradigm which focuses on the organization of the software into reusable pieces of code called _`classes`_, based on the grouping of related data and behaviors. Theses classes are user-defined data types that can be thought of as general blueprints or recipes that define the structure for _`objects`_. Objects are concrete instances of classes. They usually have more specifially defined data and they can be used to model real-world objects and/or more abstract entities.
+
+Classes are usually defined in terms of `attributes` and `methods`:
+
+- Attributes represent the state of an object and they are used to store relevant data
+- Methods are functions defined inside a class that describe the behaviors of an object
 
 In the UML diagram below, we have a very basic `Person` class which contains a few private attributes and public methods:
 
@@ -43,6 +48,12 @@ class Person {
     ...
 }
 ```
+
+The terms _`public`_ and _`private`_ are called access specifiers. Besides these two, there is also _`protected`_. As the name implies, access specifiers are keywords which define the accessibility of class members, i.e. which class members can be accessed/viewed by the users (code outside the class which declared the attributes/methods) of the class and which ones are to be accessed/seen only internally by the class itself. See below a short description for the specifiers mentioned.
+
+- _`public`_: access is allowed from outside the class;
+- _`private`_: access is not allowed from outside the class, internal use only;
+- _`protected`_: access is not allowed from outside the class, but inherited classes are allowed access.
 
 ### Abstraction
 
