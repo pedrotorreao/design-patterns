@@ -72,9 +72,13 @@ The terms _`public`_ and _`private`_ are called access specifiers. Besides these
 - _`private`_: access is not allowed from outside the class, internal use only;
 - _`protected`_: access is not allowed from outside the class, but inherited classes are allowed access.
 
-In addition to objects, it is also possible to derive other classes from a given class. For cases like this, the original class, the class from which the others are derived, is often called _`base class`_ or _`superclass`_, while the derived classes are called _`subclasses`_. Subclasses inherit the states and behaviors from their _`base class`_ and define only attributes/methods which differ. A set of classes and subclasses can be represented by its class hierarchy. To better understand this, let's derive two classes from the `Person` class defined above, the `Teenager` and `Adult` classes. See below a UML diagram representing this class hierarchy.
+In addition to objects, it is also possible to derive other classes from a given class. For cases like this, the original class, the class from which the others are derived, is often called _`base class`_ or _`superclass`_, while the derived classes are called _`subclasses`_. Subclasses inherit the states and behaviors from their _`base class`_ and define only attributes/methods which differ. They can also override the methods inherited, completely replacing the original behavior or just modifying it. A set of classes and subclasses can be represented by its class hierarchy.
+
+To better understand these concepts, let's derive two classes from the `Person` class defined above, the `Teenager` and `Adult` classes. See below a UML diagram representing this class hierarchy.
 
 ![OOP_class_example_2](resources/uml/oop_class_2.png)
+
+Both subclasses `Teenager` and `Adult` inherit the methods and attributes from the `Person` class and each one extended the original functionality in their own way.
 
 Below are basic C++ implementations of these classes. Keep in mind that, as done for the previous example, for the sake of simplicity, I've omitted important aspects like data validation.
 
@@ -85,7 +89,7 @@ class Teenager : public Person {
     string dreamJob;
   public:
     Teenager(string schoolYear, string dreamJob)
-      : schoolYear{schoolYear}, dreamJob{dreamJob} {}
+      : Person(name, country, occupation), schoolYear{schoolYear}, dreamJob{dreamJob} {}
 
     ~Teenager(){}
 
@@ -111,7 +115,7 @@ class Adult : public Person{
     int children;
   public:
     Adult(boolean married, int children)
-      : married{married}, children{children} {}
+      : Person(name, country, occupation), married{married}, children{children} {}
 
     ~Adult(){}
 
@@ -125,15 +129,39 @@ class Adult : public Person{
 };
 ```
 
+Notice that, at least in C++, the `inherited` part of the subclass **MUST** be initialized **BEFORE** the subclass is initialized. When a subclass is created, the base class' constructor executes first, then the subclass' constructor is called. However, it's very important to mention the fact that a subclass **DOES NOT** inherit the base class' constructors, destructors, overloaded assignment operators and class `friend` functions. So, in order for the base class attributes to be initialized, the desired constructor must be directly invoked from the derived class. That's what we see in these parts of the code:
+
+```cpp
+...
+Teenager(string schoolYear, string dreamJob)
+      : Person(name, country, occupation), schoolYear{schoolYear}, dreamJob{dreamJob} {}
+
+...
+Adult(boolean married, int children)
+      : Person(name, country, occupation), married{married}, children{children} {}
+
+...
+```
+
 ## Pillars
 
-### Abstraction
+Object Oriented Programming (OOP) relies heavily on a set of four core principles. These are **Encapsulation**, **Abstraction**, **Inheritance** and **Polymorphism**.
 
-### Encapsulation
+### _Encapsulation_
+
+This principle is all about controlling what information is exposed to external parties. In the previous section, I talked about `access specifiers`, here's where they shine.
+
+Encapsulation represents the ability of an object to keep states and behaviors that should not be seen/modified by other objects hidden. This encapsulation is done by making these attributes and methods _`private`_. Thus, in order to be able to interact with the rest of the program, the object exposes only what is relevant to these interactions through _`public`_ methods and `interfaces`.This helps to increase security since it provides a way to avoid that outside parties mess with an object's data unless they are explicitly allowed to. It also makes it easier to collaborate with others without having to worry about compromising sensitive information by hiding all the inner workings.
+
+### _Abstraction_
 
 ### Inheritance
 
+- child classes inherit data and behaviors from parent class
+
 ### Polymorphism
+
+- many methods can do the same task
 
 # **SOLID Principles**
 
@@ -199,6 +227,7 @@ class Adult : public Person{
 
 # References
 
-- [Dive Into Design Patterns by Alexander Shvets](https://refactoring.guru/design-patterns/book)
-- Clean Architecture by Robert C. Martin
-- [Design Patterns in Modern C++ by Dmitri Nesteruk](https://www.udemy.com/course/patterns-cplusplus/)
+- [_Dive Into Design Patterns_ by Alexander Shvets](https://refactoring.guru/design-patterns/book)
+- [_What is object-oriented programming? OOP explained in depth_ by Erin Doherty](https://www.educative.io/blog/object-oriented-programming)
+- _Clean Architecture_ by Robert C. Martin
+- [_Design Patterns in Modern C++_ by Dmitri Nesteruk](https://www.udemy.com/course/patterns-cplusplus/)
