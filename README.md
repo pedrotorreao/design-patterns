@@ -143,6 +143,8 @@ Adult(boolean married, int children)
 ...
 ```
 
+[Table of contents](#table-of-contents)
+
 ## Pillars
 
 Object Oriented Programming (OOP) relies heavily on a set of four core principles. These are **Encapsulation**, **Abstraction**, **Inheritance** and **Polymorphism**.
@@ -238,6 +240,8 @@ int main()
 }
 ```
 
+[Table of contents](#table-of-contents)
+
 # **SOLID Principles**
 
 ### **S**ingle Responsibility Principle [SRU]
@@ -313,3 +317,5 @@ Object Oriented Programming (OOP) Basics
 SOLID Principles
 
 - [_Design Patterns in Modern C++_ by Dmitri Nesteruk](https://www.udemy.com/course/patterns-cplusplus/)
+
+[Table of contents](#table-of-contents)
