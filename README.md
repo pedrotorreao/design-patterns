@@ -169,6 +169,8 @@ Objects may share a lot of similarities, maybe they have the same attributes or 
 
 By making use of polymorphism, we can have class-specific behavior for the same inherited method (same function signature). This can be achieved by defining the _`parent`_ class as an _`abstract class`_ or _`interface`_. This interface is responsible for outlining the common methods which will be overriden by the _`subclasses`_ to implement their specific versions of it.
 
+The example below shows a simple application of polymorphism. The parent class `Citizen` is an `interface`, created by adding a pure virtual function to a C++ abstract class. The pure virtual function `greet()` must be overriden by each subclass derived from `Citizen` if we want them to be concrete classes and not also interfaces.
+
 ```cpp
 // abstract class
 class Citizen {
