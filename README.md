@@ -161,11 +161,80 @@ Similar to what was shown for encapsulation, abstraction uses classes to model r
 
 ### Inheritance
 
-- child classes inherit data and behaviors from parent class
+We've touched on this principle previously when discussing the basics of OOP. Inheritance represents the ability to create new classes from existing ones. The main benefit here is reusability, thus reducing the amount of duplicated code.
+
+Objects may share a lot of similarities, maybe they have the same attributes or share the same logics. In this way, if the need arises for a class with similar class members to an existing one, instead of repeating the same code over and over, we may simply derive a _`subclass`_ from the existing class (_`parent/base class`_), extending its functionality by adding the missing pieces (new attributes and/or methods). By doing this, the common class members are kept in the _`parent`_ class, while the unique attributes/methods are kept in its _`subclasses`_, so each class adds only what is missing to it while reusing the common logic shared by the _`parent`_ class. This forms a class hierarchy, as seen before.
 
 ### Polymorphism
 
-- many methods can do the same task
+By making use of polymorphism, we can have class-specific behavior for the same inherited method (same function signature). This can be achieved by defining the _`parent`_ class as an _`abstract class`_ or _`interface`_. This interface is responsible for outlining the common methods which will be overriden by the _`subclasses`_ to implement their specific versions of it.
+
+```cpp
+// abstract class
+class Citizen {
+    public:
+      // pure virtual function, this is what make this class an
+      // abstract class and it must be overriden by subclasses:
+      virtual void greet(void) const = 0;
+};
+
+// each subclass below implement their own version of "greet()"
+// by overriding the inherited method:
+class Brazilian : public Citizen {
+    public:
+        virtual void greet(void) const override {
+            std::cout << "Olá! Como você está?\n";
+        }
+};
+
+class Spanish : public Citizen {
+    public:
+        virtual void greet(void) const override {
+            std::cout << "¡Oye! ¿Cómo estás?\n";
+        }
+};
+
+class German : public Citizen {
+    public:
+        virtual void greet(void) const override {
+            std::cout << "Hallo! Wie geht es dir?\n";
+        }
+};
+
+
+int main()
+{
+    Brazilian* br = new Brazilian();
+    br->greet(); // calls the Brazilian class version of greet()
+
+    Spanish* sp = new Spanish();
+    sp->greet(); // calls the Spanish class version of greet()
+
+    German* ge = new German();
+    ge->greet(); // calls the German class version of greet()
+
+    Citizen* cz = new Brazilian(); // a Brazilian is a Citizen
+    cz->greet(); // calls the Brazilian class version of greet()
+
+    // Since subclasses share an 'is-a' relationship with the parent
+    // class (i.e. a German is a Citizen, etc), we can add any subclass
+    // to the Citizen vector 'ctzs':
+    std::vector<Citizen*> ctzs;
+    ctzs.push_back(br);
+    ctzs.push_back(sp);
+    ctzs.push_back(ge);
+    ctzs.push_back(cz);
+
+    // Now, polymorphism makes sure that when iterating through all
+    // elements of 'ctzs' and calling the "greet()" method, the correct
+    // subclass version of it is called without us having to write specific
+    // versions of this to each subclass:
+    for(auto &ct : ctzs)
+        ct->greet();
+
+    return 0;
+}
+```
 
 # **SOLID Principles**
 
@@ -231,7 +300,14 @@ Similar to what was shown for encapsulation, abstraction uses classes to model r
 
 # References
 
+Object Oriented Programming (OOP) Basics
+
 - [_Dive Into Design Patterns_ by Alexander Shvets](https://refactoring.guru/design-patterns/book)
 - [_What is object-oriented programming? OOP explained in depth_ by Erin Doherty](https://www.educative.io/blog/object-oriented-programming)
 - _Clean Architecture_ by Robert C. Martin
+
+- [_How to explain object-oriented programming concepts to a 6-year-old_ by Alexander Petkov](https://www.freecodecamp.org/news/object-oriented-programming-concepts-21bb035f7260/)
+
+SOLID Principles
+
 - [_Design Patterns in Modern C++_ by Dmitri Nesteruk](https://www.udemy.com/course/patterns-cplusplus/)
