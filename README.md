@@ -25,7 +25,7 @@ This repository is _**open for contributions**_.
 
 ## Basics
 
-OOP is a programming paradigm which focuses on the organization of the software into reusable pieces of code called _`classes`_, based on the grouping of related data and behaviors. Theses classes are user-defined data types that can be thought of as general blueprints or recipes that define the structure for _`objects`_. Objects are **concrete** instances of classes. They usually have more specifially defined data and they can be used to model real-world objects and/or more abstract entities.
+OOP is a programming paradigm which focuses on the organization of the software into reusable pieces of code called _`classes`_, based on the grouping of related data and behaviors. Theses classes are user-defined data types that can be thought of as general blueprints or recipes that define the structure for _`objects`_. Objects are **concrete** instances of classes. They usually have more specifically defined data and they can be used to model real-world objects and/or more abstract entities.
 
 Classes are usually defined in terms of `attributes` and `methods`:
 
@@ -163,7 +163,7 @@ Similar to what was shown for encapsulation, abstraction uses classes to model r
 
 ### _Inheritance_
 
-We've touched on this principle previously when discussing the basics of OOP. Inheritance represents the ability to create new classes from existing ones. The main benefit here is reusability, thus reducing the amount of duplicated code.
+We've touched on this principle previously when discussing the basics of OOP. Inheritance represents the ability to create new classes from existing ones. The main benefit here is **reusability**, thus reducing the amount of duplicated code.
 
 Objects may share a lot of similarities, maybe they have the same attributes or share the same logics. In this way, if the need arises for a class with similar class members to an existing one, instead of repeating the same code over and over, we may simply derive a _`subclass`_ from the existing class (_`parent/base class`_), extending its functionality by adding the missing pieces (new attributes and/or methods). By doing this, the common class members are kept in the _`parent`_ class, while the unique attributes/methods are kept in its _`subclasses`_, so each class adds only what is missing to it while reusing the common logic shared by the _`parent`_ class. This forms a class hierarchy, as seen before.
 
@@ -240,7 +240,41 @@ int main()
 }
 ```
 
+## Relationships between objects
+
+todo: add ilustration here
+
+### _Inheritance_
+
+todo: brief descr. + example
+
+### _Implementation_
+
+### _Dependency_
+
+todo: brief descr. + example
+
+### _Association_
+
+todo: brief descr. + example
+
+### _Aggregation_
+
+todo: brief descr. + example
+
+### _Composition_
+
+todo: brief descr. + example
+
 [Table of contents](#table-of-contents)
+
+# **Introduction to Design Patterns**
+
+## Overview
+
+## Principles
+
+## Classification
 
 # **SOLID Principles**
 
