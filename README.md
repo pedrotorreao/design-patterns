@@ -15,6 +15,7 @@ This repository is _**open for contributions**_.
     - [Encapsulation](#encapsulation)
     - [Inheritance](#inheritance)
     - [Polymorphism](#polymorphism)
+  - [Relationships between objects](#relationships-between-objects)
 - [SOLID Principles](#solid-principles)
 - [Creational Design Patterns](#creational-design-patterns)
 - [Structural Design Patterns](#structural-design-patterns)
@@ -240,33 +241,64 @@ int main()
 }
 ```
 
+[Table of contents](#table-of-contents)
+
 ## Relationships between objects
 
-todo: add ilustration here
+![objects-relationships](resources/images/obj-relationships.jpg)
 
 ### _Inheritance_
 
-todo: brief descr. + example
+> class B `extends` class A
+
+As mentioned a couple of times above, it's the ability to create new classes from existing ones. Through inheritance, the subclass inherits the common states and behaviors from its base class and adds only those which are specific to itself, thus, avoiding code duplication.
 
 ### _Implementation_
 
+> class B `implements` interface A
+
+Interfaces and abstract classes are based on the concepts of abstraction and encapsulation. This mechanism lets you define contracts of interaction between objects and only ever cares about the behaviors of objects.
+
+Note: Subclasses have the same interface as their base class. If a parent class implements an interface, all of its subclasses must also implement it.
+
 ### _Dependency_
 
-todo: brief descr. + example
+> class B `depends on` class A
+
+Class B depends on class A if changes to the definition of class A result in the need to also modify class B. It is possible to make a dependency weaker by making the code dependent on interfaces/abstract classes instead of concrete ones.
 
 ### _Association_
 
-todo: brief descr. + example
+> object B `uses/interacts with/knows of` object A (`and also depends on` A)
+
+It can be seen as a specialized kind of dependency where an object always has access to the object with which it interacts, whereas simple dependency doesn't establish a permanent link between objects. See the following example:
+
+```cpp
+class Travel {
+  private:
+    Transport transport;
+    //...
+  public:
+    //...
+    double calculateEstimatedCost(Route r) {
+      return (this->transport.getMPG() * r.getTotalRouteMiles());
+    }
+};
+```
+
+The `calculateEstimatedCost` method above takes as argument an object of class `Route`, which is then used in the calculation inside the method. If there are any changes to `getTotalRouteMiles`, i.e. name changes, argument list, this code is going to break, which characterizes a dependency. Now, if we take a look at the `transport` attribute, it is clearly also a dependency: if the `getMPG` method is modified, it could also potentially break the code. However, since the `transport` method is always accessible to any method belonging to the `Travel` class, it's also an **association** in addition to a **dependency**.
 
 ### _Aggregation_
 
-todo: brief descr. + example
+> object A `contains` object B (`and also knows of` B (`and also depends on` B))
+
+Specialized type of association which represents `1-*`, `*-*` or `whole-part` relations between multiple objects. Under this relationship, an object usually "has" a set of other objects and works as a container/collection. Additionally, one component can exist without the container, i.e. the container does not control its life cycle, and can be linked to other containers simultaneously.
 
 ### _Composition_
 
-todo: brief descr. + example
+> object A `consists of` object B (`and also knows of` B (`and also depends on` B)) + `manages the life cycle` of B
 
-[Table of contents](#table-of-contents)
+Specific kind of aggregation where one object is composed of one or more instances of the other. What set composition apart from the other relationships is that the component itself can only exist as part of the container, i.e. `B` can only exists as part of `A`, so `A` controls its life cycle.
 
 # **Introduction to Design Patterns**
 
