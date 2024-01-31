@@ -16,6 +16,7 @@ This repository is _**open for contributions**_.
     - [Inheritance](#inheritance)
     - [Polymorphism](#polymorphism)
   - [Relationships between objects](#relationships-between-objects)
+- [Introduction to Design Patterns](#introduction-to-design-patterns)
 - [SOLID Principles](#solid-principles)
 - [Creational Design Patterns](#creational-design-patterns)
 - [Structural Design Patterns](#structural-design-patterns)
@@ -300,13 +301,37 @@ Specialized type of association which represents `1-*`, `*-*` or `whole-part` re
 
 Specific kind of aggregation where one object is composed of one or more instances of the other. What set composition apart from the other relationships is that the component itself can only exist as part of the container, i.e. `B` can only exists as part of `A`, so `A` controls its life cycle.
 
+[Table of contents](#table-of-contents)
+
 # **Introduction to Design Patterns**
 
-## Overview
+Design patterns are typical solutions to common problems in software design, which can be thought of as pre-made blueprints that you can customize to solve a recurring design problem in your code. However, a pattern is not a specific piece of code, but a general concept for solving a particular problem, thus, the code implementation may differ if the same pattern is applied to different problemms. This is also why they should not be confused to algorithms.
+
+| PATTERNS | vs | ALGORITHMS |
+| :-: | :-: | :-: |
+| Typical solution to known problems |  | Typical solution to known problems |
+| _High-level description of a solution_ |  | _Clear set of actions_ |
 
 ## Principles
 
-## Classification
+### Encapsulate what varies
+
+Since most of the time changes are unavoidable and the code will need to be updated at some point, the main purpose of this principle is to minimize the effects caused by said changes. A good practice, then, is to identify and isolate the parts of the code that vary to protect the rest of the code from adverse effects.
+
+> **TODO**: add example.
+
+### Depend on abstractions, not in concrete classes
+
+A design's flexibility can be measured by how much you can extend it without breaking the existing functionality. So, next time, we need to make two classes interact with each other, instead of making one of them depend on the other, we can follow the steps below:
+
+1. Determine what exactly one object needs from the other: which methods does it execute?
+2. Describe these methods in a new interface or abstract class.
+3. Make the class that is a dependency implement this interface.
+4. Now make the second class dependent on this interface rather than on the concrete class. You still can make it work with objects of the original class, but the connection is now much more flexible.
+
+> **TODO**: add example.
+
+### Prefer Composition over Inheritance
 
 # **SOLID Principles**
 
@@ -322,6 +347,8 @@ Specific kind of aggregation where one object is composed of one or more instanc
 
 # **Creational Design Patterns**
 
+**Purpose**: Provide object creation mechanisms that increase flexibility and reuse of existing code.
+
 ### Factory
 
 ### Abstract Factory
@@ -333,6 +360,8 @@ Specific kind of aggregation where one object is composed of one or more instanc
 ### Singleton
 
 # **Structural Design Patterns**
+
+**Purpose**: Explain how to assemble objects and classes into larger structures, while keeping the structures flexible and efficient.
 
 ### Adapter
 
@@ -349,6 +378,8 @@ Specific kind of aggregation where one object is composed of one or more instanc
 ### Proxy
 
 # **Behavioral Design Patterns**
+
+**Purpose**: Take care of effective communication and the assignment of responsibilities between objects.
 
 ### Chain of Responsibility
 
